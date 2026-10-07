@@ -759,3 +759,15 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 .setup-head .room-info:empty { display: none; }
 .setup-head .room-info b { font-family: var(--font-title); color: #ff6f8f; font-size: 30px; letter-spacing: 4px; }
 .setup-head .room-info small { font-size: 12px; color: var(--ink-soft); }
+
+/* ---------- 动画模式（?movie） ---------- */
+body.movie #game > *:not(canvas):not(.board-wrap), body.movie .hud-top, body.movie .hud-right, body.movie #side, body.movie .action, body.movie .tools { display: none !important; }
+.movie-view { position: fixed; inset: 0; width: 100vw; height: 100vh; object-fit: contain; background: #000; z-index: 50; }
+.movie-gate { position: fixed; inset: 0; z-index: 60; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; background: rgba(10, 8, 20, 0.72); color: #fff; text-align: center; padding: 16px; }
+.movie-gate h1 { font-size: clamp(32px, 6vw, 64px); margin: 0; letter-spacing: 4px; }
+.movie-gate p { margin: 0; opacity: 0.85; }
+.movie-gate div { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.movie-gate .btn { font-size: 18px; padding: 12px 22px; }
+.movie-gate small { opacity: 0.6; max-width: 420px; }
+.movie-gate .eps { margin-bottom: 6px; }
+.movie-gate .eps .btn { font-size: 14px; padding: 8px 14px; text-decoration: none; }
