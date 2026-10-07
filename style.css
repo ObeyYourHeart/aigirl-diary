@@ -733,3 +733,8 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 .online .btn { padding: 6px 14px; font-size: 14px; }
 .online .room { font-family: var(--font-title); color: #ff6f8f; font-size: 22px; letter-spacing: 3px; }
 .online .msg { color: var(--ink-soft); font-size: 13px; white-space: normal; max-width: 420px; }
+/* 规则：固定高度、内容滚动，右上角关闭 */
+.rules-card { display: flex; flex-direction: column; overflow: hidden; }
+.rules-card .rules-body { flex: 1; min-height: 0; overflow-y: auto; padding-right: 8px; }
+.rules-card .x { position: absolute; right: 18px; top: 14px; width: 42px; height: 42px; border: none; border-radius: 50%; font-size: 20px; font-weight: 900; cursor: pointer; background: #ffe3ea; color: #ff6f8f; }
+.rules-card .x:hover { background: #ff6f8f; color: #fff; }
