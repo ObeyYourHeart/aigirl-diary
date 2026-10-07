@@ -835,3 +835,7 @@ body.phone:not(.portrait) .char-card .s { font-size: 11px; }
 body.phone:not(.portrait) .setup-bottom { margin-top: 8px; gap: 12px; }
 body.phone:not(.portrait) .char-detail { padding: 6px 12px; min-height: 0; font-size: 13px; max-height: 54px; overflow: hidden; }
 body.phone:not(.portrait) #startBtn { font-size: 18px !important; padding: 10px 24px !important; }
+/* 横屏选人页：介绍框高一点、内容多了能在框里上下滑；整页万一放不下也能滑 */
+body.phone:not(.portrait) #setup:not(.menu) { overflow-y: auto; }
+body.phone:not(.portrait) .char-grid { min-height: 230px; }
+body.phone:not(.portrait) .char-detail { max-height: 96px; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; line-height: 1.45; }
