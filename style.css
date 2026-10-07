@@ -275,9 +275,9 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 #hud > * { pointer-events: auto; }
 #hud #fx { pointer-events: none; }
 .glass {
-  background: rgba(255, 251, 246, .78);
-  backdrop-filter: blur(10px) saturate(1.2);
-  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .78));
+  backdrop-filter: var(--hud-blur, blur(10px) saturate(1.2));
+  -webkit-backdrop-filter: var(--hud-blur, blur(10px) saturate(1.2));
   box-shadow: 0 6px 24px rgba(70, 40, 20, .18), inset 0 0 0 1.5px rgba(255, 255, 255, .7);
 }
 .loading3d {
@@ -289,7 +289,7 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 .hud-tl .badges .round-badge { margin-bottom: 0; }
 .sky-badge {
   font-size: 14px; font-weight: 800; color: var(--ink); border-radius: 999px; padding: 5px 12px;
-  background: rgba(255, 251, 246, .82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .82)); backdrop-filter: var(--hud-blur, blur(8px)); -webkit-backdrop-filter: var(--hud-blur, blur(8px));
   box-shadow: 0 4px 12px rgba(70, 40, 20, .16);
 }
 .round-badge {
@@ -321,7 +321,7 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 .pcard {
   border-radius: 16px; padding: 7px 10px; display: flex; gap: 9px; align-items: center;
   border: 3px solid transparent; position: relative; transition: transform .25s, border-color .25s;
-  background: rgba(255, 251, 246, .8); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .8)); backdrop-filter: var(--hud-blur, blur(10px)); -webkit-backdrop-filter: var(--hud-blur, blur(10px));
   box-shadow: 0 6px 20px rgba(70, 40, 20, .16);
 }
 .pcard.active { border-color: var(--pc); transform: translateX(-8px); }
@@ -339,7 +339,7 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 .pcard .assets { font-size: 11px; color: var(--ink-soft); margin-top: 1px; }
 #logbox {
   flex: 1; min-height: 0; border-radius: 16px; padding: 8px 12px; overflow: hidden; display: flex; flex-direction: column;
-  background: rgba(255, 251, 246, .62); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .62)); backdrop-filter: var(--hud-blur, blur(8px)); -webkit-backdrop-filter: var(--hud-blur, blur(8px));
   box-shadow: 0 6px 20px rgba(70, 40, 20, .12);
 }
 #logbox .head { font-weight: 800; margin-bottom: 4px; font-size: 14px; }
@@ -349,7 +349,7 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 .action {
   position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
   min-width: 420px; max-width: 760px; border-radius: 24px; padding: 10px 20px 12px;
-  background: rgba(255, 251, 246, .82); backdrop-filter: blur(12px) saturate(1.2); -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .82)); backdrop-filter: var(--hud-blur, blur(12px) saturate(1.2)); -webkit-backdrop-filter: var(--hud-blur, blur(12px) saturate(1.2));
   box-shadow: 0 10px 30px rgba(70, 40, 20, .2), inset 0 0 0 1.5px rgba(255, 255, 255, .7);
   display: flex; flex-direction: column; align-items: center;
 }
@@ -366,7 +366,7 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 .hud-bl { position: absolute; left: 18px; bottom: 18px; display: flex; gap: 6px; flex-wrap: wrap; width: 300px; }
 .hud-bl button {
   border: none; border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; color: var(--ink); font-weight: 700;
-  background: rgba(255, 251, 246, .8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .8)); backdrop-filter: var(--hud-blur, blur(8px)); -webkit-backdrop-filter: var(--hud-blur, blur(8px));
   box-shadow: 0 4px 14px rgba(70, 40, 20, .16);
 }
 .hud-bl button:hover { background: #fff; }
@@ -382,7 +382,7 @@ img.dev, .dev-blend { mix-blend-mode: multiply; }
 .sky-badge .fx { margin-left: 8px; font-size: 12px; color: #fff; background: #ff7a93; border-radius: 999px; padding: 1px 8px; }
 .sky-menu {
   display: none; position: absolute; left: 0; bottom: calc(100% + 8px); width: 380px; padding: 10px 12px; border-radius: 18px;
-  background: rgba(255, 251, 246, .92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .92)); backdrop-filter: var(--hud-blur, blur(12px)); -webkit-backdrop-filter: var(--hud-blur, blur(12px));
   box-shadow: 0 10px 30px rgba(70, 40, 20, .22);
 }
 .sky-menu.on { display: block; }
@@ -620,7 +620,7 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 .hud-top .round-badge { margin-bottom: 0; font-size: 20px; padding: 3px 16px; }
 .hud-top .goal {
   font-size: 14px; font-weight: 800; color: var(--ink); border-radius: 999px; padding: 6px 14px;
-  background: rgba(255, 251, 246, .88); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(70, 40, 20, .16);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .88)); backdrop-filter: var(--hud-blur, blur(8px)); -webkit-backdrop-filter: var(--hud-blur, blur(8px)); box-shadow: 0 4px 12px rgba(70, 40, 20, .16);
 }
 .hud-top .goal b { color: #ff6f8f; margin-left: 6px; }
 
@@ -649,7 +649,7 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 #feed { display: flex; flex-direction: column; gap: 4px; }
 #feed div {
   font-size: 12.5px; line-height: 1.4; padding: 4px 10px; border-radius: 10px; color: var(--ink-soft);
-  background: rgba(255, 251, 246, .72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .72)); backdrop-filter: var(--hud-blur, blur(6px)); -webkit-backdrop-filter: var(--hud-blur, blur(6px));
 }
 #feed div:first-child { color: var(--ink); font-weight: 700; background: rgba(255, 255, 255, .9); }
 
@@ -676,8 +676,8 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 #stage.compact { background: none; pointer-events: none; }
 .stage-card.compact {
   pointer-events: auto; left: 50%; top: auto; bottom: 200px; width: 660px; height: 150px; margin-left: -330px;
-  border-width: 4px; border-radius: 22px; overflow: visible; background: rgba(255, 251, 246, .9);
-  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-width: 4px; border-radius: 22px; overflow: visible; background: rgba(255, 251, 246, var(--hud-panel-opacity, .9));
+  backdrop-filter: var(--hud-blur, blur(10px)); -webkit-backdrop-filter: var(--hud-blur, blur(10px));
 }
 .stage-card.compact .sbg { border-radius: 18px; opacity: .28; }
 .stage-card.compact .stitle { top: -18px; font-size: 15px; padding: 3px 16px; }
@@ -741,7 +741,7 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 /* 首页：标题页 */
 #setup.menu { display: flex; align-items: center; justify-content: center; }
 .menu-box { width: 560px; padding: 30px 40px 26px; border-radius: 28px; text-align: center;
-  background: rgba(255, 251, 246, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 16px 50px rgba(70, 40, 20, .25); }
+  background: rgba(255, 251, 246, var(--hud-panel-opacity, .9)); backdrop-filter: var(--hud-blur, blur(10px)); -webkit-backdrop-filter: var(--hud-blur, blur(10px)); box-shadow: 0 16px 50px rgba(70, 40, 20, .25); }
 .menu-box .title.big { font-size: 64px; margin: 0; }
 .menu-box .tag { color: var(--ink-soft); font-size: 16px; margin: 4px 0 20px; }
 .menu-btns { display: flex; flex-direction: column; gap: 10px; }
@@ -793,7 +793,8 @@ body.phone.portrait .seats > * { flex: 1 1 calc(50% - 14px); min-width: 0; }
 /* 手机：选人页角色多，上下滑着选；玩家卡太多时自己滚动，不压到左下角的按钮 */
 body.phone #setup { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: max(14px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 20px max(16px, env(safe-area-inset-left)); }
 body.phone #setup.menu { overflow-y: auto; }
-body.phone #side { max-height: calc(100% - 130px); overflow-y: auto; }
+/* Reserve four toolbar rows when labels such as depth-of-field expand. */
+body.phone #side { max-height: calc(100% - 160px); overflow-y: auto; }
 body.phone .hud-bl { left: max(8px, env(safe-area-inset-left)); bottom: max(8px, env(safe-area-inset-bottom)); }
 
 /* 手机：画面方向、全屏 */
@@ -807,7 +808,8 @@ body.phone .orient-row { display: flex; align-items: center; justify-content: ce
    用 scale / translate 单独属性，不和里面的动画冲突；外面用大阴影铺满遮罩 */
 #fight, #stage, #cutin { inset: auto; left: 50%; top: 50%; width: 1280px; height: 800px; translate: -50% -50%; scale: var(--k, 1); }
 #fight { box-shadow: 0 0 0 200vmax rgba(40, 50, 90, .35); }
-#stage { box-shadow: 0 0 0 200vmax rgba(74, 59, 53, .35); }
+/* Compact conversations are transparent; only full scenes need the outer dimming mask. */
+#stage:not(.compact) { box-shadow: 0 0 0 200vmax rgba(74, 59, 53, .35); }
 /* 抢电力：手机上的左右大按钮 */
 .mini-pad { display: none; }
 body.phone .mini-pad { display: flex; position: absolute; left: 0; right: 0; bottom: max(14px, env(safe-area-inset-bottom)); justify-content: space-between; padding: 0 max(18px, env(safe-area-inset-left)); pointer-events: none; z-index: 2; }
@@ -839,3 +841,23 @@ body.phone:not(.portrait) #startBtn { font-size: 18px !important; padding: 10px 
 body.phone:not(.portrait) #setup:not(.menu) { overflow-y: auto; }
 body.phone:not(.portrait) .char-grid { min-height: 230px; }
 body.phone:not(.portrait) .char-detail { max-height: 96px; overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; line-height: 1.45; }
+
+
+/* Phones and the two economical presets use translucent panels without blur. */
+body.phone, html[data-quality="medium"] body, html[data-quality="low"] body {
+  --hud-blur: none;
+  --hud-panel-opacity: .94;
+}
+
+/* Match the toolbar while preserving the native select interaction. */
+.quality-control {
+  display: inline-flex; align-items: center; gap: 2px; padding: 5px 10px;
+  border-radius: 999px; background: rgba(255, 251, 246, .94);
+  color: var(--ink); font-size: 13px; font-weight: 700;
+  box-shadow: 0 4px 14px rgba(70, 40, 20, .16);
+}
+.quality-control select {
+  min-width: 42px; padding: 1px 2px; border: 0; border-radius: 4px;
+  color: inherit; background: transparent; font: inherit; cursor: pointer;
+}
+.quality-control select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
