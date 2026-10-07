@@ -25,8 +25,11 @@
   </div>
   <script>
 (async()=>{if(!('serviceWorker'in navigator)){document.getElementById('loading').textContent='这个浏览器不支持，请用 Chrome / Edge / Safari 最新版';return;}
-await navigator.serviceWorker.register('sw.js');if(!navigator.serviceWorker.controller){await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}));}
-const s=document.createElement('script');s.type='module';s.src='app.js?v=1791380009766';document.body.append(s);
+const had=!!navigator.serviceWorker.controller;const reg=await navigator.serviceWorker.register('sw.js',{updateViaCache:'none'});
+// 已经装过旧版本：先检查有没有新版本；新版本接管后自动刷新一次（旧版本按旧文件名取素材会取不到）
+if(had){navigator.serviceWorker.addEventListener('controllerchange',()=>location.reload(),{once:true});try{await reg.update();}catch{}if(reg.installing||reg.waiting)return;}
+if(!navigator.serviceWorker.controller){await new Promise(r=>navigator.serviceWorker.addEventListener('controllerchange',r,{once:true}));}
+const s=document.createElement('script');s.type='module';s.src='app.js?v=1791413081097';document.body.append(s);
 setTimeout(()=>navigator.serviceWorker.controller?.postMessage('warm'),1500);})();
 </script>
 </body>
