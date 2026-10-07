@@ -738,3 +738,24 @@ img.ico { height: 1.2em; width: auto; vertical-align: -0.25em; }
 .rules-card .rules-body { flex: 1; min-height: 0; overflow-y: auto; padding-right: 8px; }
 .rules-card .x { position: absolute; right: 18px; top: 14px; width: 42px; height: 42px; border: none; border-radius: 50%; font-size: 20px; font-weight: 900; cursor: pointer; background: #ffe3ea; color: #ff6f8f; }
 .rules-card .x:hover { background: #ff6f8f; color: #fff; }
+/* 首页：标题页 */
+#setup.menu { display: flex; align-items: center; justify-content: center; }
+.menu-box { width: 560px; padding: 30px 40px 26px; border-radius: 28px; text-align: center;
+  background: rgba(255, 251, 246, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); box-shadow: 0 16px 50px rgba(70, 40, 20, .25); }
+.menu-box .title.big { font-size: 64px; margin: 0; }
+.menu-box .tag { color: var(--ink-soft); font-size: 16px; margin: 4px 0 20px; }
+.menu-btns { display: flex; flex-direction: column; gap: 10px; }
+.menu-btns .btn { font-size: 22px; padding: 12px 20px; display: flex; flex-direction: column; align-items: center; }
+.menu-btns .btn small { font-size: 13px; opacity: .8; font-weight: 700; }
+.menu-form { display: flex; gap: 8px; justify-content: center; align-items: center; margin-top: 14px; flex-wrap: wrap; }
+.menu-form:empty { display: none; }
+.menu-form input { border: 2px solid #ffc9d6; border-radius: 12px; padding: 9px 12px; font: inherit; font-size: 16px; width: 130px; }
+.menu-form input.code { width: 110px; text-transform: uppercase; letter-spacing: 3px; font-weight: 900; }
+.menu-form .msg { width: 100%; color: var(--ink-soft); font-size: 14px; }
+/* 选人页标题行 */
+.setup-head { display: flex; align-items: center; gap: 16px; }
+.setup-head .title { margin: 0; }
+.setup-head .room-info { margin-left: auto; font-weight: 800; font-size: 16px; padding: 6px 16px; border-radius: 16px; background: rgba(255, 251, 246, .92); box-shadow: 0 4px 14px rgba(70, 40, 20, .16); display: flex; flex-direction: column; align-items: flex-end; }
+.setup-head .room-info:empty { display: none; }
+.setup-head .room-info b { font-family: var(--font-title); color: #ff6f8f; font-size: 30px; letter-spacing: 4px; }
+.setup-head .room-info small { font-size: 12px; color: var(--ink-soft); }
