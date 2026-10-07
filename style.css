@@ -803,3 +803,35 @@ body.phone .phone-only { display: inline-flex !important; }
 body.phone .orient-row { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 14px; font-weight: 700; color: #7a5b52; flex-wrap: wrap; }
 .orient-row .pill { border: 0; border-radius: 999px; padding: 8px 16px; font-size: 16px; font-weight: 700; background: #f3e6df; color: #7a5b52; }
 .orient-row .pill.on { background: #ff8fab; color: #fff; }
+/* 跑分对决、剧情卡、技能切入：按 1280×800 摆的弹窗，整体等比缩放放在舞台正中（手机横屏舞台只有 520 高，会被切掉）。
+   用 scale / translate 单独属性，不和里面的动画冲突；外面用大阴影铺满遮罩 */
+#fight, #stage, #cutin { inset: auto; left: 50%; top: 50%; width: 1280px; height: 800px; translate: -50% -50%; scale: var(--k, 1); }
+#fight { box-shadow: 0 0 0 200vmax rgba(40, 50, 90, .35); }
+#stage { box-shadow: 0 0 0 200vmax rgba(74, 59, 53, .35); }
+/* 抢电力：手机上的左右大按钮 */
+.mini-pad { display: none; }
+body.phone .mini-pad { display: flex; position: absolute; left: 0; right: 0; bottom: max(14px, env(safe-area-inset-bottom)); justify-content: space-between; padding: 0 max(18px, env(safe-area-inset-left)); pointer-events: none; z-index: 2; }
+.mini-pad button { pointer-events: auto; width: 150px; height: 150px; border-radius: 50%; border: 6px solid rgba(255,255,255,.85); background: rgba(255, 212, 59, .55); color: #fff; font-size: 70px; font-weight: 900; text-shadow: 0 3px 0 rgba(0,0,0,.25); touch-action: none; }
+.mini-pad button.on { background: rgba(255, 170, 0, .9); transform: scale(.94); }
+/* 抢电力：遮住整个舞台，不透出底下的界面 */
+#mini { background: #2a1838; }
+/* 手机横屏：选人页一屏放下，不用滚动（舞台约 1125×520） */
+body.phone:not(.portrait) #setup:not(.menu) { overflow: hidden; padding: max(8px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left)); display: flex; flex-direction: column; }
+body.phone:not(.portrait) #setup:not(.menu) .subtitle { display: none; }
+body.phone:not(.portrait) .setup-head .title { font-size: 34px; }
+body.phone:not(.portrait) .setup-head .btn { padding: 6px 14px; font-size: 15px; }
+body.phone:not(.portrait) .seats { gap: 10px; margin: 6px 0 8px; }
+body.phone:not(.portrait) .seat { padding: 6px 10px; gap: 8px; align-items: center; }
+body.phone:not(.portrait) .seat .portrait { width: 40px; height: 50px; }
+body.phone:not(.portrait) .seat .cname { font-size: 16px; }
+body.phone:not(.portrait) .seat .who { font-size: 12px; }
+body.phone:not(.portrait) .seat .kind { margin-top: 3px; gap: 4px; }
+body.phone:not(.portrait) .seat .kind button { padding: 2px 8px; font-size: 12px; }
+body.phone:not(.portrait) .char-grid { flex: 1; min-height: 0; grid-template-columns: repeat(7, 1fr); grid-auto-rows: 1fr; gap: 8px; }
+body.phone:not(.portrait) .char-card { padding: 4px 4px 5px; display: flex; flex-direction: column; min-height: 0; }
+body.phone:not(.portrait) .char-card .portrait { flex: 1; height: auto; min-height: 0; }
+body.phone:not(.portrait) .char-card .n { font-size: 14px; margin-top: 2px; }
+body.phone:not(.portrait) .char-card .s { font-size: 11px; }
+body.phone:not(.portrait) .setup-bottom { margin-top: 8px; gap: 12px; }
+body.phone:not(.portrait) .char-detail { padding: 6px 12px; min-height: 0; font-size: 13px; max-height: 54px; overflow: hidden; }
+body.phone:not(.portrait) #startBtn { font-size: 18px !important; padding: 10px 24px !important; }
