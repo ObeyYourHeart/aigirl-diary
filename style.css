@@ -861,3 +861,65 @@ body.phone, html[data-quality="medium"] body, html[data-quality="low"] body {
   color: inherit; background: transparent; font: inherit; cursor: pointer;
 }
 .quality-control select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ==================== 2026-10-08 界面重做 ==================== */
+/* 玩家卡：紧凑一行（头像、名字、金币、GPU/电/训练），点一下展开技能和资产 */
+#side { width: 214px; gap: 5px; }
+.pcard { padding: 5px 8px 5px 5px; gap: 7px; border-radius: 14px; border-width: 2px; box-shadow: 0 2px 8px rgba(70, 40, 20, .14); }
+.pcard .portrait { width: 36px; height: 36px; border-radius: 50%; box-shadow: 0 0 0 2px var(--pc); }
+.pcard .portrait img { height: 170%; }
+.pcard .top { gap: 4px; align-items: center; padding-right: 44px; }
+.pcard .name { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.pcard .tag { font-size: 10px; padding: 0 6px; flex: none; }
+.pcard.me .tag { font-size: 10px; padding: 0 7px; }
+.pcard .tokens { font-size: 15px; top: 0; }
+.pcard .tokens::before { font-size: 11px; }
+.pcard .chips { font-size: 12px; margin-top: 0; }
+.pcard .chips b { font-size: 13px; }
+.pcard .row2, .pcard .assets { display: none; }
+.pcard.open .row2 { display: flex; }
+.pcard.open .assets { display: block; }
+.pcard.active { transform: translateX(6px); }
+.pcard .stat:empty { display: none; }
+/* 导游：说话时出现，几秒后收起；记录默认不显示（菜单里打开） */
+.hud-right { width: 270px; }
+.hud-right .clawd { width: 46px; height: 46px; }
+.hud-right .bubble { font-size: 13px; padding: 6px 10px; box-shadow: 0 2px 8px rgba(70, 40, 20, .14); }
+.hud-right .host { transition: opacity .4s, transform .4s; }
+.hud-right .host:not(.on) { opacity: 0; transform: translateY(-8px); pointer-events: none; }
+body:not(.show-feed) #feed { display: none; }
+/* 左下角：视角、加速、菜单 */
+.hud-bl { width: auto; display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
+.hud-bl > button { height: 42px; border-radius: 999px; border: 0; font: inherit; font-weight: 800; font-size: 14px; color: var(--ink);
+  background: rgba(255, 251, 246, .94); box-shadow: 0 2px 8px rgba(70, 40, 20, .16); cursor: pointer; padding: 0 14px; }
+.hud-bl > button.ico { width: 42px; padding: 0; font-size: 18px; }
+.hud-bl > button.on { background: #ff8fab; color: #fff; }
+.hud-menu { display: none; position: absolute; left: 0; bottom: 52px; width: 250px; padding: 12px; border-radius: 18px;
+  background: rgba(255, 251, 246, .97); box-shadow: 0 6px 22px rgba(70, 40, 20, .22); }
+.hud-menu.on { display: block; }
+.hud-menu .mrow { display: flex; align-items: center; justify-content: space-between; font-weight: 800; font-size: 14px; margin-bottom: 10px; }
+.hud-menu .seg { display: flex; background: #f1e4dc; border-radius: 999px; padding: 3px; }
+.hud-menu .seg button { border: 0; background: none; font: inherit; font-weight: 800; padding: 4px 14px; border-radius: 999px; color: var(--ink-soft); cursor: pointer; }
+.hud-menu .seg button.on { background: #fff; color: #ff5a85; box-shadow: 0 1px 4px rgba(0, 0, 0, .12); }
+.hud-menu .mgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.hud-menu .mgrid button { border: 0; border-radius: 12px; background: #f6ece6; font: inherit; font-size: 13px; font-weight: 700; padding: 8px 6px; color: var(--ink); cursor: pointer; text-align: left; }
+.hud-menu .mgrid button:hover { background: #fde3ea; }
+.hud-menu .mgrid button.danger { color: #e0446a; }
+.hud-bl .sky-menu { bottom: 52px; }
+/* 手机：阴影收小（大面积模糊阴影在部分手机上会画出黑块） */
+body.phone .pcard, body.phone .hud-right .bubble, body.phone #feed div, body.phone .hud-top .goal, body.phone .action { box-shadow: 0 1px 4px rgba(70, 40, 20, .18); }
+body.phone #side { max-height: calc(100% - 80px); }
+
+/* 选人页（手机横屏）：座位压成一行小条，把空间让给角色和介绍 */
+body.phone:not(.portrait) .seats { margin: 4px 0 6px; gap: 8px; }
+body.phone:not(.portrait) .seat { padding: 4px 8px; gap: 8px; border-radius: 14px; }
+body.phone:not(.portrait) .seat .portrait { width: 34px; height: 34px; border-radius: 50%; }
+body.phone:not(.portrait) .seat > div:not(.portrait) { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; min-width: 0; }
+body.phone:not(.portrait) .seat .who { font-size: 11px; }
+body.phone:not(.portrait) .seat .cname { font-size: 14px; white-space: nowrap; }
+body.phone:not(.portrait) .seat .kind { margin-top: 0; }
+body.phone:not(.portrait) .seat .kind button { padding: 1px 7px; font-size: 11px; }
+body.phone:not(.portrait) .char-grid { min-height: 0; }
+body.phone:not(.portrait) .char-detail { max-height: 84px; }
+body.phone:not(.portrait) .seat { min-height: 0; }
+body.phone:not(.portrait) .seat .kind { flex-wrap: nowrap; }
