@@ -923,3 +923,87 @@ body.phone:not(.portrait) .char-grid { min-height: 0; }
 body.phone:not(.portrait) .char-detail { max-height: 84px; }
 body.phone:not(.portrait) .seat { min-height: 0; }
 body.phone:not(.portrait) .seat .kind { flex-wrap: nowrap; }
+
+/* ==================== 2026-10-08 界面重做（二） ==================== */
+/* 事件、技能、跑分弹窗：框按 1280×800 缩放，暗底单独铺满整个画面（以前暗底跟着框缩小，四边露出硬边 = 黑块） */
+#fight, #stage, #cutin { background: none !important; box-shadow: none !important; overflow: visible !important; }
+#fight::before, #stage::before, #cutin::before { content: ''; position: absolute; inset: -300vmax; background: var(--ovbg); z-index: -1; pointer-events: auto; }
+#fight { --ovbg: rgba(40, 50, 90, .35); }
+#stage { --ovbg: rgba(74, 59, 53, .35); }
+#cutin { --ovbg: rgba(30, 20, 30, .45); }
+#cutin .band { left: -1200px; right: -1200px; }
+
+/* 玩家：四张卡横排在顶上，信息直接看得到 */
+#side { left: 8px; right: 8px; top: 8px; width: auto; max-height: none !important; overflow: visible !important; flex-direction: row; justify-content: center; gap: 8px; }
+.pcard { flex: 1 1 0; max-width: 300px; min-width: 0; padding: 5px 9px 5px 5px; gap: 8px; border-radius: 16px; border: 2px solid transparent;
+  background: rgba(255, 251, 246, .9); box-shadow: 0 1px 5px rgba(70, 40, 20, .16); align-items: center; }
+.pcard.active { transform: none; border-color: var(--pc); background: #fff; }
+.pcard.me { background: rgba(255, 244, 247, .95); }
+.pcard .portrait { width: 40px; height: 40px; border-radius: 50%; box-shadow: 0 0 0 2px var(--pc); }
+.pcard .top { padding-right: 46px; }
+.pcard .row2 { display: flex !important; gap: 6px; margin-top: 0; font-size: 11px; white-space: nowrap; overflow: hidden; }
+.pcard .row2 .skill { font-weight: 700; }
+.pcard .chips { display: inline; }
+.pcard .info { display: flex; flex-direction: column; gap: 1px; }
+.pcard .info > .chips { order: 2; }
+.pcard .info > .row2 { order: 3; }
+/* 详情：点卡片弹出，镜头不动 */
+.pcard .more { display: none !important; position: absolute; left: -46px; top: calc(100% + 10px); width: 250px; z-index: 5; padding: 10px 12px; border-radius: 14px;
+  background: #fff; box-shadow: 0 6px 22px rgba(70, 40, 20, .22); font-size: 12.5px; line-height: 1.5; color: var(--ink); white-space: normal; cursor: default; }
+.pcard.open .more { display: block !important; }
+.pcard .more .desc b { color: #ff5a85; }
+.pcard .more .assets { display: block !important; margin-top: 4px; color: var(--ink-soft); }
+.pcard .more .watch { margin-top: 8px; border: 0; border-radius: 999px; padding: 5px 12px; background: #f6ece6; font: inherit; font-weight: 800; cursor: pointer; }
+.pcard .info { position: relative; }
+/* 回合、时间、目标：放在玩家卡下面一行；导游说话也在下面居中 */
+.hud-top { top: 64px; }
+.hud-top .round-badge { font-size: 16px; padding: 2px 12px; }
+.hud-top .goal, .hud-top .sky-badge { font-size: 12.5px; padding: 4px 10px; }
+.hud-right { left: 50%; right: auto; transform: translateX(-50%); top: 100px; width: 440px; align-items: center; pointer-events: none; }
+.hud-right .host { width: 100%; justify-content: center; }
+.hud-right .bubble { flex: 0 1 auto; }
+body.show-feed .hud-right { left: auto; right: 8px; transform: none; width: 280px; pointer-events: auto; }
+
+/* 操作面板：不再滚动；字小一点、按钮排紧凑 */
+.action { padding: 8px 12px 10px; border-radius: 20px; bottom: 10px; max-width: calc(100% - 380px); min-width: 0; }
+.action .now { font-size: 13px; }
+.action .prompt { font-size: 13px; margin: 2px 0 4px; }
+.action .btns:not(:has(.stepcard)) { max-height: none; overflow: visible; gap: 8px; padding: 2px; }
+.action .btns .btn { font-size: 14px; padding: 7px 14px; }
+.action .btns .btn small { font-size: 11px; }
+
+/* 手机横屏：面板贴底、按钮一排 */
+body.phone:not(.portrait) .action { max-width: calc(100% - 340px); }
+body.phone:not(.portrait) .action .btns .btn { padding: 6px 11px; font-size: 13px; }
+body.phone:not(.portrait) .action .btns .btn small { font-size: 10px; }
+body.phone:not(.portrait) .pcard .more { width: 230px; }
+
+/* 手机竖屏：玩家卡两排；操作面板占满宽度、按钮两列；工具按钮在面板下面 */
+body.portrait #side { flex-wrap: wrap; }
+body.portrait .pcard { flex: 1 1 calc(50% - 8px); max-width: none; }
+body.portrait .hud-top { top: 124px; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 16px); white-space: normal; }
+body.portrait .hud-right { top: 168px; width: calc(100% - 16px); }
+body.portrait .action { left: 8px; right: 8px; transform: none; max-width: none; bottom: 64px; }
+body.portrait .action .btns:not(:has(.stepcard)) { display: grid; grid-template-columns: 1fr 1fr; width: 100%; }
+body.portrait .action .btns .btn:last-child:nth-child(odd) { grid-column: span 2; }
+body.portrait .action .btns .btn { padding: 9px 8px; font-size: 15px; }
+body.portrait .hud-bl { bottom: 10px; }
+
+/* 选人页（手机竖屏）：角色 5 列、座位压成小条、开始按钮放在介绍下面 */
+body.phone.portrait .seat { padding: 6px 8px; gap: 8px; min-height: 0; border-radius: 14px; }
+body.phone.portrait .seat .portrait { width: 40px; height: 40px; border-radius: 50%; }
+body.phone.portrait .seat .cname { font-size: 16px; }
+body.phone.portrait .seat .kind { margin-top: 3px; flex-wrap: nowrap; }
+body.phone.portrait .seat .kind button { padding: 2px 8px; font-size: 12px; }
+body.phone.portrait .char-grid { grid-template-columns: repeat(5, 1fr); gap: 8px; }
+body.phone.portrait .char-card .portrait { height: 104px; }
+body.phone.portrait .char-card .s { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+body.phone.portrait .setup-bottom { flex-direction: column; align-items: stretch; }
+body.phone.portrait #startBtn { width: 100%; }
+body.phone.portrait #setup .subtitle { font-size: 13px; }
+#hud .hud-top { top: 70px; z-index: 1; }
+#hud .hud-right { top: 106px; }
+body.portrait #hud .hud-top { top: 132px; }
+body.portrait #hud .hud-right { top: 170px; }
+body.portrait #hud .hud-top { top: 152px; }
+body.portrait #hud .hud-right { top: 190px; }
