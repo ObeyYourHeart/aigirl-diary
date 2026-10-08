@@ -1098,3 +1098,10 @@ body.phone #end .podium { margin-top: 40px; }
 /* 结算：标题和领奖台拉开，第一名的台词不被标题挡住 */
 #end .podium { margin-top: 60px; }
 body.phone #end .podium { margin-top: 80px; }
+/* 结算：庆典插画只盖一层很薄的渐变（下面稍亮一点，字看得清） */
+#end { background: linear-gradient(rgba(255, 248, 240, 0) 30%, rgba(255, 244, 236, .45)), var(--keyart) center/cover no-repeat; }
+#end .title { -webkit-text-stroke: 6px #fff; paint-order: stroke fill; }
+#end .pod .say { box-shadow: 0 2px 8px rgba(70, 40, 20, .2); }
+/* 结算背景铺在整个舞台上（放在 #end 自己身上时，手机缩放会把背景切成两截） */
+#end { background: none !important; }
+body[data-screen=end] #root { background: linear-gradient(rgba(255, 248, 240, 0) 30%, rgba(255, 244, 236, .45)), var(--endbg) center/cover no-repeat; }
