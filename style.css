@@ -1105,3 +1105,20 @@ body.phone #end .podium { margin-top: 80px; }
 /* 结算背景铺在整个舞台上（放在 #end 自己身上时，手机缩放会把背景切成两截） */
 #end { background: none !important; }
 body[data-screen=end] #root { background: linear-gradient(rgba(255, 248, 240, 0) 30%, rgba(255, 244, 236, .45)), var(--endbg) center/cover no-repeat; }
+/* 领奖台：高度随内容，卡片不再被下面的按钮盖住 */
+.podium { height: auto; min-height: 420px; }
+body.portrait #end { padding: 16px 12px; }
+body.portrait #end .podium { gap: 6px; min-height: 0; }
+body.portrait .pod { width: 24%; }
+body.portrait .pod .fig { width: 100%; height: 190px; }
+body.portrait .pod .say { font-size: 12px; max-width: 100%; }
+body.portrait .pod .rank { font-size: 26px; }
+body.portrait .pod .pname { font-size: 15px; }
+body.portrait .pod .score { font-size: 11px; line-height: 1.35; }
+body.portrait .pod .step { width: 100%; padding: 6px 4px 8px; box-sizing: border-box; }
+/* 竖屏：不缩小，领奖台往下放，角色站在插画的广场上（上面留给天空、烟花和标题） */
+body.phone.portrait #end { zoom: 1; }
+body.portrait #end .podium { margin-top: 330px; }
+.album > div:only-child:not(.polaroid) { grid-column: 1 / -1; text-align: center; color: var(--ink-soft); }
+body.portrait .album { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+body.phone:not(.portrait) .album { grid-template-columns: repeat(4, 1fr); }
