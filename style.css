@@ -1085,3 +1085,16 @@ body.phone:not(.portrait) #end { zoom: .68; }
 body.phone.portrait #end { zoom: .8; }
 #end .title { z-index: 2; }
 body.phone #end .podium { margin-top: 40px; }
+
+/* ==================== 2026-10-08 修正（二） ==================== */
+/* 视角 / 加速 / 菜单：和行动按钮分开，竖着放在屏幕右边中间 */
+#hud .hud-bl { position: absolute; left: auto; right: max(8px, env(safe-area-inset-right)); top: 50%; bottom: auto; transform: translateY(-50%);
+  width: auto; flex-direction: column; gap: 8px; }
+#hud .hud-bl > button { height: 44px; min-width: 44px; padding: 0 12px; background: rgba(255, 251, 246, .94); box-shadow: 0 1px 5px rgba(70, 40, 20, .22); }
+#hud .hud-bl > button.ico { width: 44px; padding: 0; }
+#hud .hud-bl .hud-menu, #hud .hud-bl .sky-menu { left: auto; right: calc(100% + 8px); bottom: auto; top: 50%; transform: translateY(-50%); }
+/* 玩家卡：🧠 后面显示每回合能练多少 */
+.pcard .chips .inc { font-style: normal; font-size: 11px; font-weight: 800; color: #fff; background: #9775fa; border-radius: 999px; padding: 0 5px; margin-left: 3px; vertical-align: 1px; }
+/* 结算：标题和领奖台拉开，第一名的台词不被标题挡住 */
+#end .podium { margin-top: 60px; }
+body.phone #end .podium { margin-top: 80px; }
