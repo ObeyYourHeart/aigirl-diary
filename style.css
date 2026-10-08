@@ -1007,3 +1007,56 @@ body.portrait #hud .hud-top { top: 132px; }
 body.portrait #hud .hud-right { top: 170px; }
 body.portrait #hud .hud-top { top: 152px; }
 body.portrait #hud .hud-right { top: 190px; }
+
+/* ==================== 2026-10-08 界面重做（三）：单手布局 ==================== */
+/* 底栏：贴着屏幕底部、占满宽度；表头左边「轮到谁」，右边视角 / 加速 / 菜单 */
+#hud .action { left: 50%; right: auto; transform: translateX(-50%); bottom: 0; width: min(100%, 980px); max-width: none; min-width: 0;
+  border-radius: 22px 22px 0 0; padding: 6px 12px max(10px, env(safe-area-inset-bottom)); align-items: stretch; }
+.action .dock-head { display: flex; align-items: center; gap: 8px; min-height: 40px; }
+.action .dock-head .now { flex: 1; text-align: left; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.action .dock-head .hud-bl { position: static; display: flex; gap: 6px; }
+.action .dock-head .hud-bl > button { height: 36px; box-shadow: none; background: #f4e9e3; font-size: 13px; }
+.action .dock-head .hud-bl > button.ico { width: 36px; font-size: 16px; }
+.action .dock-head .hud-bl > button.on { background: #ff8fab; }
+.action .dock-head .hud-menu { left: auto; right: 0; bottom: 46px; }
+.action .dock-head .sky-menu { left: auto; right: 0; bottom: 46px; }
+.action .prompt { text-align: center; }
+.action .dice-tray:not(:empty) { margin: 2px 0; }
+/* 按钮：自动排成几列，不滚动；第一个选项（掷骰子、买下……）是主按钮 */
+.action .btns:not(:has(.stepcard)) { display: grid; grid-template-columns: repeat(auto-fit, minmax(118px, 1fr)); gap: 7px; width: 100%; max-height: none; overflow: visible; padding: 2px 0 0; }
+.action .btns .btn { margin: 0; padding: 8px 6px; font-size: 14px; line-height: 1.25; border-radius: 14px; }
+.action .btns .btn small { font-size: 10.5px; }
+.action .btns .btn kbd { display: none; }
+body:not(.phone) .action .btns .btn kbd { display: inline-block; }
+/* 竖屏：主按钮放在最下面、占满一行，拇指最好按；其它选项排成三列在上面 */
+body.portrait .action .btns:not(:has(.stepcard)) { grid-template-columns: repeat(3, 1fr); }
+body.portrait .action .btns .btn:first-child { order: 99; grid-column: 1 / -1; font-size: 18px; padding: 13px 8px; }
+body.portrait .action .btns .btn:last-child:nth-child(odd) { grid-column: auto; }
+body.portrait .action .btns .btn { padding: 10px 4px; font-size: 14px; }
+body.portrait #hud .action { border-radius: 20px 20px 0 0; }
+
+/* 对话框：贴在底栏上面，宽度和底栏一样，字大一点；两边是说话的角色 */
+#stage.compact { inset: 0; left: 0; top: 0; width: auto; height: auto; translate: none; scale: none; }
+#stage.compact .stage-card.compact { left: 50%; margin-left: 0; transform: translateX(-50%); width: min(calc(100% - 16px), 900px);
+  bottom: calc(var(--dock, 140px) + 10px); top: auto; height: auto; min-height: 120px; padding: 0; }
+#stage.compact .stage-card.compact .dialog { position: relative; left: auto; right: auto; top: auto; bottom: auto; margin: 22px 104px 14px; font-size: 17px; min-height: 64px; }
+#stage.compact .stage-card.compact .actor { height: 150px; width: 104px; bottom: 4px; }
+#stage.compact .stage-card.compact .actor.left { left: -6px; }
+#stage.compact .stage-card.compact .actor.right { right: -6px; }
+#stage.compact .stage-card.compact .effect { white-space: normal; max-width: 90%; text-align: center; }
+body.portrait #stage.compact .stage-card.compact .dialog { margin: 22px 70px 12px; font-size: 18px; }
+body.portrait #stage.compact .stage-card.compact .actor { width: 78px; height: 120px; }
+/* 大剧情框在竖屏按卡片本身的宽度缩放（以前按 1280 缩，字太小） */
+body.portrait #stage:not(.compact) { scale: min(calc(var(--k, 1) * 1.35), 1); }
+
+/* 玩家卡：点一下镜头切过去（到下一个人行动为止） */
+.pcard .more { display: none !important; }
+.pcard { cursor: pointer; }
+
+/* 回合信息、导游：贴在玩家卡下面（按玩家卡实际高度算），不再重叠 */
+#hud .hud-top, body.portrait #hud .hud-top { top: calc(var(--top, 56px) + 16px); }
+#hud .hud-right, body.portrait #hud .hud-right { top: calc(var(--top, 56px) + 52px); }
+body.portrait #hud .hud-right { width: calc(100% - 16px); }
+/* 技能立绘：框给定宽度（宽度自适应时，竖屏下图片宽度会被算成 0，立绘就看不见） */
+#cutin .art { width: 640px; }
+#cutin .art img { width: 100%; height: 100%; object-fit: contain; object-position: 50% 100%; }
